@@ -2,30 +2,27 @@
 #include <stdio.h>
 
 int main(void) {
-    double income;
-    double tax = 0.0;
-    double t1 = 0.0, t2 = 0.0, t3 = 0.0;
+    double dohod;
+    double nalog = 0.0;
+    double s1 = 0.0, s2 = 0.0, s3 = 0.0;
 
-    if (scanf("%lf", &income) != 1 || income < 0) {
-        return 1;
+    if (scanf("%lf", &dohod) == 1 && dohod >= 0){
+        if (dohod <= 500.0) {
+            s1 = dohod * 0.10;
+        } else if (dohod <= 1000.0) {
+            s1 = 500.0 * 0.10;
+            s2 = (dohod - 500.0) * 0.15;
+        } else {
+            s1 = 500.0 * 0.10;
+            s2 = 500.0 * 0.15;
+            s3 = (dohod - 1000.0) * 0.20;
+        }
+
+        nalog = s1 + s2 + s3;
+
+        printf("%.2f\n", dohod);
+        printf("%.2f %.2f %.2f\n", s1, s2, s3);
+        printf("%.2f\n", nalog);
     }
-
-    if (income <= 500.0) {
-        t1 = income * 0.10;
-    } else if (income <= 1000.0) {
-        t1 = 500.0 * 0.10;
-        t2 = (income - 500.0) * 0.15;
-    } else {
-        t1 = 500.0 * 0.10;
-        t2 = 500.0 * 0.15;
-        t3 = (income - 1000.0) * 0.20;
-    }
-
-    tax = t1 + t2 + t3;
-
-    printf("%.2f\n", income);
-    printf("%.2f %.2f %.2f\n", t1, t2, t3);
-    printf("%.2f\n", tax);
-
     return 0;
 }
